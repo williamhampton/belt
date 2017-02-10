@@ -1,0 +1,27 @@
+<head>
+</head>
+<body>
+  <h1>Please Register</h1>
+<form id = 'add' action = '/add' method = 'post'>
+  <label for= 'first'> First Name:<input type = 'text' name = 'first' id = 'first'></label>
+  <p>{{ enterfirst }}</p>
+  <label for= 'last'> Last Name:<input type = 'text' name = 'last' id = 'last'></label>
+  <p>{{ enterlast }}</p>
+  <label for= 'email'> Email:<input type = 'text' name = 'email' id = 'email'></label>
+  <p>{{ emailcon }}</p>
+  <label for = 'pass'> Password:<input type = 'password' name = 'pass' id = 'pass'></label>
+  <p>{{ password }}</p>
+  <label for = 'passcon'> Confirm Password<input type = 'password' name = 'passcon' id = 'passcon'></label>
+  {% csrf_token %}
+  <input type="submit" value="Register">
+</form>
+{{ sucess }}
+<h2>Login</h2>
+<form id = 'login' action = '/login' method = 'post'>
+  <label for= 'email_login'>Email:<input type = 'text' name = 'email_login' id = 'email_login'></label>
+  <label for = 'password_login'>Password:<input type = 'password' name = 'password_login' id = 'password_login'></label>
+  {% csrf_token %}
+  <input type="submit" value="Login">
+</form>
+<p>{{ fail }}</p>
+</body>

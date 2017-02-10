@@ -1,0 +1,13 @@
+<head>
+</head>
+<body>
+  {% for user in users %}
+  <h1> {{ user.first_name }} {{ user.last_name }}</h1>
+  <h2>Number of quotes: {{ number }}</h2>
+  {% endfor %}
+  {% for quote in quotes %}
+    <h3>{{ quote.quote }}</h3>
+    <h4>{{ quote.quoteby }}</h4>
+  {% endfor %}
+  <a href = '/quotes'>Back to main</a>
+</body>

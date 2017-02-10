@@ -1,0 +1,41 @@
+<head>
+
+</head>
+<body>
+  <h1> Welcome {{ username }}</h1>
+  <a href = '/'>logout</a>
+  <form id = 'newquote' action = '/newquote' method = 'post'>
+      <label for = 'quoteby'> Quote by:<input type = 'text' name = 'quoteby' id = 'quoteby'></label>
+      <p><textarea name = 'quote' id = 'quote'  rows="4" cols="50"></textarea></P>
+      <input type = 'submit' value = 'Add a quote'>
+      {% csrf_token %}
+      <p>{{ fail }}</p>
+      <p> {{ success }}</p>
+  </form>
+  <h2> Favorites</h2>
+  {% for favorite in favorites %}
+    <h3> {{ favorite.quote }}</h3>
+    <h4> {{ favorite.quoteby }}</h4>
+    <a href = '/users/{{ favorite.user.id}}'>{{ quote.user.first_name}} {{ quote.user.last_name }}</a>
+    <form id = 'notfav' action = '/removefav' method = 'post'>
+      <input type = 'hidden' name = 'quotefavrem' value = '{{ favorite.quote }}'>
+      <input type = 'hidden' name = 'quotebyfavrem' value = '{{ favorite.quoteby }}'>
+      <input type = 'submit' value = 'Remove from Favorites'>
+      {% csrf_token %}
+    </form>
+  {% endfor%}
+  <h2> Quotes</h2>
+  {% for quote in quotes %}
+    <h3>{{ quote.quote }}</h3>
+    <h4>{{ quote.quoteby }}</h4>
+    <h4> Posted by: </h4>
+    <a href = '/users/{{ quote.user.id}}'>{{ quote.user.first_name}} {{ quote.user.last_name }}</a>
+    <form id = 'fav' action = '/favorites' method = 'post'>
+      <input type = 'hidden' name = 'quotefav' value = '{{ quote.quote }}'>
+      <input type = 'hidden' name = 'quotebyfav' value = '{{ quote.quoteby }}'>
+      <input type = 'submit' value = 'Add to Favorites'>
+      {% csrf_token %}
+    </form>
+  {% endfor %}
+
+</body>
